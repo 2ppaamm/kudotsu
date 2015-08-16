@@ -13,7 +13,7 @@ class AccountController extends Controller
 {
     /** For authentication of user */
     public function __construct() {
-        $this->middleware('auth.basic');
+        $this->middleware('auth.basic.once');
     }
     /**
      * Display a listing of the resource.
