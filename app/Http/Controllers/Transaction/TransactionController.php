@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CreateTransactionRequest;
 
 class TransactionController extends Controller
 {
@@ -42,9 +43,9 @@ class TransactionController extends Controller
      * @param  Request  $request
      * @return Response
      */
-    public function store(Request $request)
+    public function store(CreateTransactionRequest $request)
     {
-        //
+        return 'storing...';
     }
 
     /**

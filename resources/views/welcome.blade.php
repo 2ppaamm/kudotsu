@@ -39,6 +39,25 @@
         <div class="container">
             <div class="content">
                 <div class="title">Laravel 5 for NFC</div>
+{!! Form::open(['url'=>'http://kudotsu.pamelalim.me/transactions/store','class'=>'form']) !!}
+    <div class="form-group">
+        {!! Form::label('UserID/Email') !!}
+        {!! Form:: text('user_id', null, [
+            'required', 'class' => 'form-control', 'placeholder' => 'pamelaliusm@gmail.com'
+        ]) !!}
+    </div>
+    <div class="form-group">
+        {!! Form:: label('Password') !!}
+        {!! Form:: password('password') !!}
+    </div>
+    <div class="form-group">
+        {!! Form::label('Amount') !!}
+        {!! Form::input('number','amount_in_txn_currency') !!}
+    </div>
+    <div class="form-group">
+        {!! Form::submit('Pay now', ['class'=>'btn btn-primary']) !!}
+    </div>
+{!! Form::close() !!}
             </div>
         </div>
     </body>

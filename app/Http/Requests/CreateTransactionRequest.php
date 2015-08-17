@@ -25,12 +25,13 @@ class CreateTransactionRequest extends Request
     {
         return [
             'user_id' => 'required',
-            'bank_account_id'=>'required',
-            'txn_currencyid' => 'required',
+            'password' => 'required',
             'amount_in_txn_currency' =>'required',
+/*            'bank_account_id'=>'required',
+            'txn_currencyid' => 'required',
             'transaction_address' => 'required',
             'merchant_code' =>'required'
-        ];
+*/        ];
     }
 
     public function response(array $errors)

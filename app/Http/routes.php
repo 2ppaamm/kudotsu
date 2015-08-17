@@ -19,9 +19,11 @@ Route::controllers([
    'auth' => 'Auth\AuthController',
     'password' => 'Auth\PasswordController',
 ]);
-Route::resource('accounts', 'AccountController',['except'=>['create','edit']]);
-Route::resource('transactions','Transaction\TransactionController', ['only'=>['create','show','index','store']]);
-Route::resource('accounts.transactions', 'AccountTransactionController',['except'=>['edit','create','update','edit']]);
+Route::group(['prefix'=>'api/v1.1'],function() {
+    Route::resource('accounts', 'AccountController', ['except' => ['create', 'edit']]);
+    Route::resource('transactions', 'Transaction\TransactionController', ['only' => ['create', 'show', 'index', 'store']]);
+    Route::resource('accounts.transactions', 'AccountTransactionController', ['except' => ['edit', 'create', 'update', 'edit']]);
+});
 
 Route::post('oauth/access_token', function() {
     return Response::json(Authorizer::issueAccessToken());
