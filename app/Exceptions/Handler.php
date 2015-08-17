@@ -39,11 +39,13 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $e)
     {
-        if ($e instanceof NotFoundHttpException){
+/*        if ($e instanceof NotFoundHttpException){
             return response()->json(['message' => 'Bad request, please verify request route','code'=>400],400);
         }
         else {
-            return response()->json(['message'=>'Unexpected error, try again later', 'code'=>500], 500);
+            return response()->json(['message'=>'Unexpected error, try again later', 'code'=>450], 50'');
         }
+        else
+*/        return parent::render($request, $e);
     }
 }

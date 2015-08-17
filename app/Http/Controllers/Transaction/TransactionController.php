@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateTransactionRequest;
-
+use Illuminate\Support\Facades\Cache;
 class TransactionController extends Controller
 {
     /** For authentication of user */
@@ -22,6 +22,10 @@ class TransactionController extends Controller
      */
     public function index()
     {
+        /** Add cache */
+        $transactions = Cache::remember('transaction_logs', 15/60, function() {
+        return Transaction_log::with('user')->with('bank_account')->with('currency')->get();
+    });
         $transactions = Transaction_log::with('user')->with('bank_account')->with('currency')->get();
         return response()->json(['data'=>$transactions],200);
 //        return view('transaction.index')->with('transactions', $transactions);
