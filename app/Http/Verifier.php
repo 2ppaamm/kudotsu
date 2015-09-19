@@ -1,6 +1,6 @@
 <?php
+namespace App\Http;
 use Illuminate\Support\Facades\Auth;
-use App\User;
 
 class Verifier
 {

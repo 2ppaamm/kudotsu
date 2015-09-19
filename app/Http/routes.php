@@ -28,3 +28,18 @@ Route::controllers([
 Route::post('oauth/access_token', function() {
     return Response::json(Authorizer::issueAccessToken());
 });
+
+Route::get('queue',function(){
+    return 'Queue lesson';
+});
+Route::post('queue/demo',function(){
+   return Queue::marshal();
+});
+Route::get('mail', function(){
+//    dd(\Illuminate\Support\Facades\Config::get('mail'));
+    $data =[];
+    \Illuminate\Support\Facades\Mail::send('emails.welcome', $data, function($message){
+        $message -> to('pamelaliusm@gmail.com')
+            ->subject('testing laravel mail');
+    });
+});

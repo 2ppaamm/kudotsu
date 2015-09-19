@@ -9,11 +9,13 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateTransactionRequest;
 use Illuminate\Support\Facades\Cache;
+use App\User;
+use App\Jobs\SendReminderEmail;
 class TransactionController extends Controller
 {
     /** For authentication of user */
     public function __construct() {
-        $this->middleware('auth.basic.once');
+        $this->middleware('oauth');
     }
     /**
      * Display a listing of the resource.
@@ -24,9 +26,9 @@ class TransactionController extends Controller
     {
         /** Add cache */
         $transactions = Cache::remember('transaction_logs', 15/60, function() {
-        return Transaction_log::with('user')->with('bank_account')->with('currency')->get();
+        return Transaction_log::with('user')->with('bank_account')->with('currency')->get();//simplePaginate(10);
     });
-        $transactions = Transaction_log::with('user')->with('bank_account')->with('currency')->get();
+ //       $transactions = Transaction_log::with('user')->with('bank_account')->with('currency')->get();
         return response()->json(['data'=>$transactions],200);
 //        return view('transaction.index')->with('transactions', $transactions);
     }
@@ -49,7 +51,10 @@ class TransactionController extends Controller
      */
     public function store(CreateTransactionRequest $request)
     {
-        return 'storing...';
+        $user = User::findOrFail($request->user_id);
+
+        $this->dispatch(new SendReminderEmail($user));
+        return $user;//amount_in_txn_currency; //debit transaction received
     }
 
     /**

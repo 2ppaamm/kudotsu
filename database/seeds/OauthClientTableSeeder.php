@@ -3,9 +3,9 @@
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 use Faker\Factory as Faker;
-use OA as OAuth;
+use App\OAuth_clients;
 
-class OauthClientTableSeeder extends Seeder
+class OAuthClientTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,24 +15,28 @@ class OauthClientTableSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create();
-        $user = OAuth::create([
+        $user = OAuth_clients::create([
+            'id' =>1,
             'name' => 'pamelalim',
-            'secret' => Hash::make('123456'),
+            'secret' => '123456',
         ]);
-        $user = OAuth::create([
+        $user = OAuth_clients::create([
+            'id'=>2,
             'name' => 'kenthoie',
-            'secret' => Hash::make('kenthoie'),
+            'secret' => 'kenthoie',
         ]);
-        $user = OAuth::create([
+        $user = OAuth_clients::create([
+            'id'=>3,
             'name' => 'kennethgoh',
-            'secret' => Hash::make('kennethgoh'),
+            'secret' => 'kennethgoh',
         ]);
 
-        for ($i = 0; $i < 20; $i++)
+        for ($i = 4; $i < 25; $i++)
         {
-            $user = OAuth::create([
+            $user = OAuth_clients::create([
+                'id' =>$i,
                 'name' => $faker->userName,
-                'secret' => Hash::make('password'),
+                'secret' => 'password',
            ]);
         }
    }

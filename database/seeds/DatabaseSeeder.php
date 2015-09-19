@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             $this->call(AccountTypeTableSeeder::class);
             $this->call(BankAccountTableSeeder::class);
             $this->call(TransactionLogTableSeeder::class);
+            $this->call(OAuthClientTableSeeder::class);
         Model::reguard();
     }
 }
