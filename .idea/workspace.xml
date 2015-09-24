@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1e4af7c0-ca15-4101-82f7-cb1f9a5e249d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/routes.php" afterPath="$PROJECT_DIR$/app/Http/routes.php" />
-    </list>
+    <list default="true" id="1e4af7c0-ca15-4101-82f7-cb1f9a5e249d" name="Default" comment="" />
     <ignored path="nfc.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -30,11 +28,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="routes.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
+      <file leaf-file-name="composer.json" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/composer.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.90448624">
-              <caret line="57" column="5" selection-start-line="57" selection-start-column="5" selection-end-line="57" selection-end-column="5" />
+            <state vertical-scroll-proportion="0.7477341">
+              <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -656,13 +654,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/composer.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.26797387">
-          <caret line="9" column="28" selection-start-line="9" selection-start-column="28" selection-end-line="9" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Bus/Dispatcher.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33333334">
@@ -751,8 +742,37 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.90448624">
-          <caret line="57" column="5" selection-start-line="57" selection-start-column="5" selection-end-line="57" selection-end-column="5" />
+        <state vertical-scroll-proportion="0.6960926">
+          <caret line="53" column="11" selection-start-line="53" selection-start-column="11" selection-end-line="53" selection-end-column="11" />
+          <folding>
+            <marker date="1443063449500" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1443063449500" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1443063449500" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1443063449500" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1443063449500" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1443063449500" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1443063449500" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1443063449500" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1443063449500" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1443063449500" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1443063449500" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1443063449500" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1443063449500" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1443063449500" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1443063449500" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1443063449500" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1443063449500" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1443063449500" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1443063449500" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1443063449500" expanded="true" signature="-1:-1" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/composer.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7477341">
+          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
           <folding />
         </state>
       </provider>
