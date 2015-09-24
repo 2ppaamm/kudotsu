@@ -45,15 +45,15 @@ Route::get('mail', function(){
     });
 });
 
-class WriteData{
+class SendData{
     public function fire($job, $data){
-        $user = OAuth_clients::create([
-            'id'=>10001,
-            'name' => '123',
-            'secret' => '123',
-        ]);
+        $data =[];
+        \Illuminate\Support\Facades\Mail::send('emails.welcome', $data, function($message){
+            $message -> to('pamelaliusm@gmail.com')
+                ->subject('testing laravel mail');
+        });
 
 //        File::append(app_path().'/hellos.txt',$data['string'], PHP_EOL);
-        $job -> delete();
+//        $job -> delete();
     }
 }
