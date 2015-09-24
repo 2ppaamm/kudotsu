@@ -1,5 +1,5 @@
 <?php
-
+Queue::getIron()->ssl_verifypeer = false;
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -30,7 +30,7 @@ Route::post('oauth/access_token', function() {
 });
 
 Route::get('queue',function(){
-    Queue::push('FileTimeWriter',['string'=>'Hello!']);
+    Queue::push('WriteData',['string'=>'Hello!']);
     return "ok!";
 });
 Route::post('queue/demo',function(){
@@ -45,9 +45,15 @@ Route::get('mail', function(){
     });
 });
 
-class FileTimeWriter{
+class WriteData{
     public function fire($job, $data){
-        File::append(app_path().'/hellos.txt',$data['string'], PHP_EOL);
+        $user = OAuth_clients::create([
+            'id'=>10001,
+            'name' => '123',
+            'secret' => '123',
+        ]);
+
+//        File::append(app_path().'/hellos.txt',$data['string'], PHP_EOL);
         $job -> delete();
     }
 }
