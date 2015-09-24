@@ -52,8 +52,9 @@ class TransactionController extends Controller
     public function store(CreateTransactionRequest $request)
     {
         $user = User::findOrFail($request->user_id);
+//        $this->dispatch(new SendReminderEmail($user));
+        Queue::push('FileTimeWriter',['time'=>time()]);
 
-        $this->dispatch(new SendReminderEmail($user));
         return $user;//amount_in_txn_currency; //debit transaction received
     }
 

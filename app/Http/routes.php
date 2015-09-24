@@ -46,7 +46,7 @@ Route::get('mail', function(){
 
 class FileTimeWriter{
     public function fire($job,$data){
-        return app_path();
+        return 'Say hi!';
         File::append(app_path().'/time.txt',$data['time'], PHP_EOL);
     }
 }
