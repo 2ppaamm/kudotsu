@@ -30,7 +30,8 @@ Route::post('oauth/access_token', function() {
 });
 
 Route::get('queue',function(){
-    Queue::push('FileTimeWriter');//,['time'=>time()]);
+    Queue::push('FileTimeWriter',['string'=>'Hello!']);
+    return "ok!";
 });
 Route::post('queue/demo',function(){
    return Queue::marshal();
@@ -45,8 +46,8 @@ Route::get('mail', function(){
 });
 
 class FileTimeWriter{
-    public function fire(){
-        return 'Say hi!';
-        File::append(app_path().'/time.txt',$data['time'], PHP_EOL);
+    public function fire($job, $data){
+        File::append(app_path().'/hellos.txt',$data['string'], PHP_EOL);
+        $job -> delete();
     }
 }
