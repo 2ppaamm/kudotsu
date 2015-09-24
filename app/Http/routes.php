@@ -33,6 +33,7 @@ Route::get('queue',function(){
     Queue::push('FileTimeWriter');//,['time'=>time()]);
 });
 Route::post('queue/demo',function(){
+    return "say hi!";
    return Queue::marshal();
 });
 Route::get('mail', function(){
