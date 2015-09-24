@@ -24,11 +24,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="routes.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
+      <file leaf-file-name="queue.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/config/queue.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.19102749">
-              <caret line="35" column="21" selection-start-line="35" selection-start-column="21" selection-end-line="35" selection-end-column="21" />
+            <state vertical-scroll-proportion="0.5701881">
+              <caret line="64" column="29" selection-start-line="64" selection-start-column="29" selection-end-line="64" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -51,12 +51,12 @@
         <option value="$PROJECT_DIR$/app/Jobs/SendSMSMessages.php" />
         <option value="$PROJECT_DIR$/resources/views/mails/welcome.blade.php" />
         <option value="$PROJECT_DIR$/config/mail.php" />
-        <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/composer.json" />
         <option value="$PROJECT_DIR$/app/Jobs/SendReminderEmail.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Transaction/TransactionController.php" />
-        <option value="$PROJECT_DIR$/config/queue.php" />
         <option value="$PROJECT_DIR$/app/Http/routes.php" />
+        <option value="$PROJECT_DIR$/.env" />
+        <option value="$PROJECT_DIR$/config/queue.php" />
       </list>
     </option>
   </component>
@@ -693,39 +693,45 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3323263">
+          <caret line="40" column="41" selection-start-line="40" selection-start-column="39" selection-end-line="40" selection-end-column="41" />
+          <folding>
+            <marker date="1443060897219" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1443060897219" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1443060897219" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1443060897219" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1443060897219" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1443060897219" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1443060897219" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1443060897219" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1443060897219" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1443060897219" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1443060897219" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1443060897219" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1443060897219" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1443060897219" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1443060897219" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1443060897219" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1443060897219" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1443060897219" expanded="true" signature="-1:-1" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/.env">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7134588">
-          <caret line="20" column="50" selection-start-line="20" selection-start-column="50" selection-end-line="20" selection-end-column="50" />
+        <state vertical-scroll-proportion="0.15323855">
+          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/config/queue.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.23589002">
-          <caret line="57" column="10" selection-start-line="57" selection-start-column="10" selection-end-line="57" selection-end-column="10" />
-          <folding>
-            <marker date="1442809164977" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1442809164977" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1442809164977" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1442809164977" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1442809164977" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1442809164977" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1442809164977" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1442809164977" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1442809164977" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1442809164977" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1442809164977" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1442809164977" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.19102749">
-          <caret line="35" column="21" selection-start-line="35" selection-start-column="21" selection-end-line="35" selection-end-column="21" />
+        <state vertical-scroll-proportion="0.5701881">
+          <caret line="64" column="29" selection-start-line="64" selection-start-column="29" selection-end-line="64" selection-end-column="29" />
           <folding />
         </state>
       </provider>
