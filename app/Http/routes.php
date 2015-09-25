@@ -39,10 +39,11 @@ Route::post('queue/demo',function(){
 Route::get('mail', function(){
 //    dd(\Illuminate\Support\Facades\Config::get('mail'));
     $data =[];
-    \Illuminate\Support\Facades\Mail::send('emails.welcome', $data, function($message){
+    Mail::send('emails.welcome', $data, function($message){
         $message -> to('pamelaliusm@gmail.com')
-            ->subject('testing laravel mail');
+            ->subject('testing laravel mail'.time());
     });
+    return 'ok,ok!';
 });
 
 class SendData{

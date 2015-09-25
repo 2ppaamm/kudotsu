@@ -28,7 +28,7 @@ return [
     |
     */
 
-    'host' => env('MAIL_HOST', 'smtp.gmail.com'),
+    'host' => env('MAIL_HOST', 'smtp.mailgun.org'),//smtp.gmail.com'),
 
     /*
     |--------------------------------------------------------------------------
@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'from' => ['address' => 'pamelaliusm@gmail.com', 'name' => 'Pamela Lim'],
+    'from' => ['address' => 'postmaster@pamelalim.me', 'name' => 'Kudotsu Admin'],
 
     /*
     |--------------------------------------------------------------------------
