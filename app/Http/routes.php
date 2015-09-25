@@ -41,7 +41,7 @@ Route::get('mail', function(){
     $data =[];
     Mail::send('emails.welcome', $data, function($message){
         $message -> to('pamelaliusm@gmail.com')
-            ->subject('testing laravel mail'.time());
+            ->subject('Your one-time PIN is '.time() . '. It will expire in 5 minutes.');
     });
     return 'ok,ok!';
 });
