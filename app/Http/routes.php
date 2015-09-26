@@ -30,7 +30,7 @@ Route::post('oauth/access_token', function() {
 });
 
 Route::get('queue',function(){
-    Queue::pushRaw('SendData', 'nfc');
+    Queue::push('SendData', 'nfc');
     return "ok!";
 });
 Route::post('queue/demo',function(){
