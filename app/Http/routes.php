@@ -21,7 +21,7 @@ Route::controllers([
 ]);
 //Route::group(['prefix'=>'api/v1.1'],function() {
     Route::resource('accounts', 'AccountController', ['except' => ['create', 'edit']]);
-    Route::resource('transactions', 'Transaction\TransactionController', ['only' => ['create', 'show', 'index', 'store']]);
+    Route::resource('transactions', 'Transaction\TransactionController');//, ['only' => ['create', 'show', 'index', 'store']]);
     Route::resource('accounts.transactions', 'AccountTransactionController', ['except' => ['edit', 'create', 'update', 'edit']]);
 //});
 
@@ -30,7 +30,7 @@ Route::post('oauth/access_token', function() {
 });
 
 Route::get('queue',function(){
-    Queue::push('WriteData',['string'=>'Hello!']);
+    Queue::pushRaw('SendData','kudotsu');
     return "ok!";
 });
 Route::post('queue/demo',function(){
@@ -41,7 +41,7 @@ Route::get('mail', function(){
     $data =[];
     Mail::send('emails.welcome', $data, function($message){
         $message -> to('pamelaliusm@gmail.com')
-            ->subject('Your one-time PIN is '.time() . '. It will expire in 5 minutes.');
+            ->subject('From mail, your one-time PIN is '.time() . '. It will expire in 5 minutes.');
     });
     return 'ok,ok!';
 });
@@ -51,10 +51,16 @@ class SendData{
         $data =[];
         \Illuminate\Support\Facades\Mail::send('emails.welcome', $data, function($message){
             $message -> to('pamelaliusm@gmail.com')
-                ->subject('testing laravel mail');
+                ->subject('From queue testing laravel mail');
         });
 
 //        File::append(app_path().'/hellos.txt',$data['string'], PHP_EOL);
 //        $job -> delete();
     }
 }
+
+
+
+Route::get('payment', function(){
+    return view('transaction.token');
+});

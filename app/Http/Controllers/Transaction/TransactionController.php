@@ -40,7 +40,8 @@ class TransactionController extends Controller
      */
     public function create()
     {
-        return view('transaction.create');
+        $token = Response::json(Authorizer::issueAccessToken());
+        return view('transaction.create', $token);
     }
 
     /**
@@ -51,6 +52,7 @@ class TransactionController extends Controller
      */
     public function store(CreateTransactionRequest $request)
     {
+        $this->middleware('oauth');
         $user = User::findOrFail($request->user_id);
 //        $this->dispatch(new SendReminderEmail($user));
         Queue::push('FileTimeWriter',['time'=>time()]);

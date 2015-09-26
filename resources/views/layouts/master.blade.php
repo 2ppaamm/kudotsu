@@ -9,7 +9,7 @@
     <title>Kudotsu Payment</title>
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 </head>
-<body>
+<body ng-app>
     <div class="container">
         <div class="col-md-9">
             @yield('contents')
@@ -20,5 +20,7 @@
             @show
         </div>
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.5/angular.min.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>
