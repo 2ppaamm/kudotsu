@@ -31,6 +31,7 @@ Route::post('oauth/access_token', function() {
 
 Route::get('queue',function(){
     Queue::pushRaw('SendData', 'nfc');
+    Queue::pushRaw('SendAnother', 'kudotsu');
     return "ok!";
 });
 Route::post('queue/demo',function(){
@@ -52,6 +53,18 @@ class SendData{
         \Illuminate\Support\Facades\Mail::send('emails.welcome', $data, function($message){
             $message -> to('pamelaliusm@gmail.com')
                 ->subject('From queue testing laravel mail');
+        });
+
+//        File::append(app_path().'/hellos.txt',$data['string'], PHP_EOL);
+//        $job -> delete();
+    }
+}
+class SendAnother{
+    public function fire($job, $data){
+        $data =[];
+        \Illuminate\Support\Facades\Mail::send('emails.welcome', $data, function($message){
+            $message -> to('pamelaliusm@gmail.com')
+                ->subject('From kudotsu queue testing laravel mail');
         });
 
 //        File::append(app_path().'/hellos.txt',$data['string'], PHP_EOL);
