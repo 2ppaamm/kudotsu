@@ -30,7 +30,7 @@ Route::post('oauth/access_token', function() {
 });
 
 Route::get('queue',function(){
-    Queue::pushRaw('SendData','kudotsu');
+    Queue::push('SendData');
     return "ok!";
 });
 Route::post('queue/demo',function(){
