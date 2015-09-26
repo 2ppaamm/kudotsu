@@ -21,7 +21,7 @@ Route::controllers([
 ]);
 //Route::group(['prefix'=>'api/v1.1'],function() {
     Route::resource('accounts', 'AccountController', ['except' => ['create', 'edit']]);
-    Route::resource('transactions', 'Transaction\TransactionController');//, ['only' => ['create', 'show', 'index', 'store']]);
+    Route::resource('transactions', 'Transaction\TransactionController', ['only' => ['create', 'show', 'index', 'store']]);
     Route::resource('accounts.transactions', 'AccountTransactionController', ['except' => ['edit', 'create', 'update', 'edit']]);
 //});
 
@@ -30,7 +30,7 @@ Route::post('oauth/access_token', function() {
 });
 
 Route::get('queue',function(){
-    Queue::pushRaw('SendData', 'nfc');
+    Queue::push('SendData');
     return "ok!";
 });
 Route::post('queue/demo',function(){
@@ -52,18 +52,6 @@ class SendData{
         \Illuminate\Support\Facades\Mail::send('emails.welcome', $data, function($message){
             $message -> to('pamelaliusm@gmail.com')
                 ->subject('From queue testing laravel mail');
-        });
-
-//        File::append(app_path().'/hellos.txt',$data['string'], PHP_EOL);
-//        $job -> delete();
-    }
-}
-class SendAnother{
-    public function fire($job, $data){
-        $data =[];
-        \Illuminate\Support\Facades\Mail::send('emails.welcome', $data, function($message){
-            $message -> to('pamelaliusm@gmail.com')
-                ->subject('From kudotsu queue testing laravel mail');
         });
 
 //        File::append(app_path().'/hellos.txt',$data['string'], PHP_EOL);
