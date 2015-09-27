@@ -30,7 +30,7 @@ Route::post('oauth/access_token', function() {
 });
 
 Route::get('queue',function(){
-    Queue::push('SendData');
+    Queue::push('SendData', 'nfc');
     return "ok!";
 });
 Route::post('queue/demo',function(){
@@ -51,7 +51,7 @@ class SendData{
         $data =[];
         \Illuminate\Support\Facades\Mail::send('emails.welcome', $data, function($message){
             $message -> to('pamelaliusm@gmail.com')
-                ->subject('From queue testing laravel mail');
+                ->subject('From pamelalim.me queue testing laravel mail');
         });
 
 //        File::append(app_path().'/hellos.txt',$data['string'], PHP_EOL);
