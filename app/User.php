@@ -70,6 +70,6 @@ class User extends Model implements BillableContract, AuthenticatableContract, C
     }
 
     public function oauth_clients(){
-        return $this->hasMany('App\Oauth_clients');
+        return $this->hasMany('App\OAuth_clients');
     }
 }
