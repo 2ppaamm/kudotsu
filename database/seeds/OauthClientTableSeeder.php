@@ -15,28 +15,32 @@ class OAuthClientTableSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create();
-        $user = OAuth_clients::create([
+        $client = OAuth_clients::create([
             'id' =>1,
             'name' => 'pamelalim',
             'secret' => '123456',
+            'user_id' => 1
         ]);
-        $user = OAuth_clients::create([
+        $client = OAuth_clients::create([
             'id'=>2,
             'name' => 'kenthoie',
             'secret' => 'kenthoie',
+            'user_id' => 2
         ]);
-        $user = OAuth_clients::create([
+        $client = OAuth_clients::create([
             'id'=>3,
             'name' => 'kennethgoh',
             'secret' => 'kennethgoh',
+            'user_id' => 3
         ]);
 
-        for ($i = 4; $i < 25; $i++)
+        for ($i = 4; $i < 20; $i++)
         {
-            $user = OAuth_clients::create([
+            $client = OAuth_clients::create([
                 'id' =>$i,
                 'name' => $faker->userName,
                 'secret' => 'password',
+                'user_id' => $i
            ]);
         }
    }

@@ -27,10 +27,10 @@ class CreateTransactionRequest extends Request
             'user_id' => 'required',
             'password' => 'required',
             'amount_in_txn_currency' =>'required',
-/*            'bank_account_id'=>'required',
+//            'bank_account_id'=>'required',
             'txn_currencyid' => 'required',
-            'transaction_address' => 'required',
-*/            'merchant_code' =>'required'
+//            'transaction_address' => 'required',
+//            'merchant_code' =>'required'
         ];
     }
 

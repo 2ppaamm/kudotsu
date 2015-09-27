@@ -31,9 +31,10 @@ class CreateOauthClientsTable extends Migration
             $table->string('id', 40)->primary();
             $table->string('secret', 40);
             $table->string('name');
-            $table->timestamps();
-
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->unique(['id', 'secret']);
+            $table->timestamps();
         });
     }
 

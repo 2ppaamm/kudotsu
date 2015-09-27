@@ -199,7 +199,7 @@ return [
         'Form'      => Illuminate\Html\FormFacade::class,
         'HTML'      => Illuminate\Html\HtmlFacade::class,
         'Authorizer'=> LucaDegasperi\OAuth2Server\Facades\Authorizer::class,
-
+        'Uuid'      => Webpatser\Uuid\Uuid::class
     ],
 
 ];

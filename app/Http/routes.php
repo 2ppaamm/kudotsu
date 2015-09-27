@@ -26,9 +26,13 @@ Route::controllers([
 //});
 
 Route::post('oauth/access_token', function() {
-    return Response::json(Authorizer::issueAccessToken());
+    return Authorizer::issueAccessToken()['access_token'];
 });
 
+Route::post('access/token', function(){
+    $_REQUEST['access_token']= Authorizer::issueAccessToken()['access_token'];
+    return $_REQUEST;
+});
 Route::get('queue',function(){
     Queue::push('SendData', '', 'nfc');
     Queue::push('SendDataK', '', 'kudotsu');

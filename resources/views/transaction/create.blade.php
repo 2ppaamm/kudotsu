@@ -6,6 +6,7 @@
         <li> {{$error }}</li>
     @endforeach
 </ul>
+
 {!! Form::open(['route'=>'transactions.store','class'=>'form']) !!}
     <div class="form-group">
         {!! Form::label('Username') !!}

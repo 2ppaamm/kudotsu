@@ -65,7 +65,11 @@ class User extends Model implements BillableContract, AuthenticatableContract, C
         return $this->hasMany('App\Transaction_log');
     }
 
-    public function bank_account(){
+    public function bank_accounts(){
         return $this->hasMany('App\Bank_account');
+    }
+
+    public function oauth_clients(){
+        return $this->hasMany('App\Oauth_clients');
     }
 }

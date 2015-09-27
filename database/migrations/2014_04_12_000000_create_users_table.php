@@ -26,7 +26,6 @@ class CreateUsersTable extends Migration
             $table->integer('kudos_beginning_day_balance');
             $table->integer('number_of_txn_day');
             $table->integer('net_day_txn_kudos');
-            $table->string('API_key');
             $table->timestamps();
         });
     }

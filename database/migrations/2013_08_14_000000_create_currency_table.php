@@ -21,6 +21,8 @@ class CreateCurrencyTable extends Migration
             $table->string('country_organization',50);
             $table->string('type');
             $table->string('description', 100);
+            $table->decimal('daily_limit', 8,2);
+            $table->decimal('transaction_limit', 8,2);
         });
     }
 
