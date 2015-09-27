@@ -72,4 +72,8 @@ class User extends Model implements BillableContract, AuthenticatableContract, C
     public function oauth_clients(){
         return $this->hasMany('App\OAuth_clients');
     }
+
+    public function primary_account(){
+        return $this->hasOne('App\Bank_account')->where('is_primary','=',TRUE);
+    }
 }

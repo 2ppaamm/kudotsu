@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Currency extends Model
 {
     public function bank_accounts(){
-        return $this->hasMany('App\Bank_account');
+        return $this->belongsToMany('App\Bank_account');
     }
 }

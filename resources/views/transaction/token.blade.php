@@ -6,7 +6,7 @@
         <li> {{$error }}</li>
     @endforeach
 </ul>
-{!! Form::open(['url'=>'transactions','class'=>'form']) !!}
+{!! Form::open(['url'=>'activities','class'=>'form']) !!}
     <div class="form-group">
         {!! Form:: hidden('user_id', '1',['required',
         'class'=>'form-control']) !!}

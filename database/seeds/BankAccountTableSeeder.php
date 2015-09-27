@@ -21,7 +21,10 @@ class  BankAccountTableSeeder extends Seeder
                 'fi_id' => $faker->numberBetween(1,3),
                 'account_number'=>$faker->regexify('[0-9]+\-[0-9]{2,4}'),
                 'account_type_id'=>$faker->numberBetween(1,4),
-                'currency_id'=>$faker->numberBetween(1,4)
+                'currency_id'=>$faker->numberBetween(1,4),
+                'transaction_limit' => 50,
+                'daily_limit' =>1000,
+                'is_primary' => TRUE
             ]);
         }
     }

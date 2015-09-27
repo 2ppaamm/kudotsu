@@ -4,12 +4,12 @@ namespace App\Http\Controllers\Transaction;
 use App\Activity_log;
 use App\OAuth_clients;
 use App\Transaction_log;
-use Illuminate\Contracts\Queue\Queue;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateTransactionRequest;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use App\User;
 use App\Jobs\SendReminderEmail;
@@ -60,26 +60,7 @@ class TransactionController extends Controller
      */
     public function store(CreateTransactionRequest $request)
     {
-        $payer = User::findOrFail($request->user_id);
-        $payee = User::with('oauth_clients')
-            ->where('id',"=", $request->client_id)->get();
-
-        $activity_id = (string)Uuid::generate(4);
-        $activity = Activity_log::create([
-            'id' => $activity_id,
-            'payer_id' => $payer->id,
-            'payee_id' => $payee->first()->id,
-            'txn_currencyid' => 2,
-            'amount_in_txn_currency' => $request->amount_in_txn_currency
-        ]);
-
-        if (Hash::check($request->password, $payer->password))
-        {
-            \Illuminate\Support\Facades\Queue::push('SendData', '', 'nfc');
-            return 'Sending message';
-        }
-//        return Authorizer::issueAccessToken()['access_token'];
-        return $payee;//amount_in_txn_currency; //debit transaction received
+        //
     }
 
     /**
@@ -130,4 +111,5 @@ class TransactionController extends Controller
     {
         //
     }
+
 }

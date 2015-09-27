@@ -25,8 +25,9 @@ class CreateBankAccountsTable extends Migration
             $table->string('account_number');
             $table->integer('account_type_id')->unsigned();
             $table->foreign('account_type_id')->references('id')->on('account_types');
-            $table->decimal('daily_limt',8,2);
+            $table->decimal('daily_limit',8,2);
             $table->decimal('transaction_limit', 8, 2);
+            $table->boolean('is_primary');
         });
     }
 

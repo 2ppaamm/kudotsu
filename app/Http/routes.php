@@ -22,6 +22,7 @@ Route::controllers([
 //Route::group(['prefix'=>'api/v1.1'],function() {
     Route::resource('accounts', 'AccountController', ['except' => ['create', 'edit']]);
     Route::resource('transactions', 'Transaction\TransactionController', ['only' => ['create', 'show', 'index', 'store']]);
+    Route::resource('activities', 'ActivityController', ['only' => ['create', 'show', 'index', 'store']]);
     Route::resource('accounts.transactions', 'AccountTransactionController', ['except' => ['edit', 'create', 'update', 'edit']]);
 //});
 

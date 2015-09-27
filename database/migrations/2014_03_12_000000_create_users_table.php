@@ -17,6 +17,7 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password', 60);
+            $table->rememberToken();
             $table->boolean('is_admin');
             $table->string('address');
             $table->integer('kudos_ledger_balance');
