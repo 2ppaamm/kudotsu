@@ -30,8 +30,8 @@ Route::post('oauth/access_token', function() {
 });
 
 Route::get('queue',function(){
-    Queue::push('SendData', 'nfc');
-    Queue::push('SendDataK', 'kudotsu');
+    Queue::push('SendData', '', 'nfc');
+    Queue::push('SendDataK', '', 'kudotsu');
     return "ok!";
 });
 Route::post('queue/demo',function(){
