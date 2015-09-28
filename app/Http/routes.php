@@ -12,7 +12,8 @@ Queue::getIron()->ssl_verifypeer = false;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return dsfalkjhf:all();
+//    return view('welcome');
 });
 
 Route::controllers([
