@@ -18,6 +18,8 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password', 60);
             $table->rememberToken();
+            $table->integer('account_status_id')->unsigned();
+            $table->foreign('account_status_id')->references('id')->on('account_statuses');
             $table->boolean('is_admin');
             $table->string('address');
             $table->integer('kudos_ledger_balance');

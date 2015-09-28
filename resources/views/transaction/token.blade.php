@@ -16,7 +16,7 @@
         'class'=>'form-control']) !!}
         {!! Form:: hidden('grant_type', 'password',['required',
         'class'=>'form-control']) !!}
-        {!! Form:: hidden('client_id', '2',['required',
+        {!! Form:: hidden('client_id', '3',['required',
         'class'=>'form-control','placeholder'=>'client_id = 1']) !!}
         {!! Form:: hidden('client_secret', 'kenthoie',['required',
         'class'=>'form-control','placeholder'=>'client_secret = 123456', 'value'=>'123456']) !!}

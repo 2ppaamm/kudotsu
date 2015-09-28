@@ -22,13 +22,13 @@ class OAuthClientTableSeeder extends Seeder
             'user_id' => 1
         ]);
         $client = OAuth_clients::create([
-            'id'=>2,
+            'id'=>3,
             'name' => 'kenthoie',
             'secret' => 'kenthoie',
             'user_id' => 2
         ]);
         $client = OAuth_clients::create([
-            'id'=>3,
+            'id'=>2,
             'name' => 'kennethgoh',
             'secret' => 'kennethgoh',
             'user_id' => 3

@@ -19,12 +19,12 @@ class CurrencyTableSeeder extends Seeder
             'country_organization' => 'Kudotsu',
             'type' => 'Virtual',
             'description' => 'Kudos',
-            'daily_limit' => 1000.00,
-            'transaction_limit' => 100.00
+            'daily_limit' => 1000000.00,
+            'transaction_limit' => 100000.00
         ]);
         $currency = Currency::create([
             'ISO_symbol' => 'USD',
-            'Kudos_exchange' => 10000.00,
+            'Kudos_exchange' => 1000.00,
             'country_organization' => 'US',
             'type' => 'Country',
             'description' => 'US Dollar',

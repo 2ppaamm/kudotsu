@@ -15,6 +15,7 @@ use App\User;
 use App\Jobs\SendReminderEmail;
 use Illuminate\Support\Facades\Hash;
 use LucaDegasperi\OAuth2Server\Facades\Authorizer;
+use PayPal\Api\Payment;
 use Webpatser\Uuid\Uuid;
 
 class TransactionController extends Controller
@@ -58,9 +59,10 @@ class TransactionController extends Controller
      * @param  Request $request
      * @return Response
      */
-    public function store(CreateTransactionRequest $request)
+    public function store(Payment $payment, $request)
     {
-        //
+
+        return $payment;
     }
 
     /**

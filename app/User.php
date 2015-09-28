@@ -76,4 +76,8 @@ class User extends Model implements BillableContract, AuthenticatableContract, C
     public function primary_account(){
         return $this->hasOne('App\Bank_account')->where('is_primary','=',TRUE);
     }
+
+    public function account_status(){
+        return $this->belongsTo('App\Account_status');
+    }
 }

@@ -22,6 +22,7 @@ class CreateActivityTable extends Migration
             $table->integer('txn_currencyid')->unsigned();
             $table->foreign('txn_currencyid')->references('id')->on('currencies');
             $table->decimal('amount_in_txn_currency',8,2);
+            $table->decimal('number_of_kudos', 20,2);
             $table->timestamps();
         });
     }

@@ -147,7 +147,8 @@ return [
         Illuminate\Html\HtmlServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
         LucaDegasperi\OAuth2Server\Storage\FluentStorageServiceProvider::class,
-        LucaDegasperi\OAuth2Server\OAuth2ServerServiceProvider::class
+        LucaDegasperi\OAuth2Server\OAuth2ServerServiceProvider::class,
+        Bugsnag\BugsnagLaravel\BugsnagLaravelServiceProvider::class
     ],
 
     /*
@@ -199,7 +200,8 @@ return [
         'Form'      => Illuminate\Html\FormFacade::class,
         'HTML'      => Illuminate\Html\HtmlFacade::class,
         'Authorizer'=> LucaDegasperi\OAuth2Server\Facades\Authorizer::class,
-        'Uuid'      => Webpatser\Uuid\Uuid::class
+        'Uuid'      => Webpatser\Uuid\Uuid::class,
+        'Bugsnag' => Bugsnag\BugsnagLaravel\BugsnagFacade::class
     ],
 
 ];

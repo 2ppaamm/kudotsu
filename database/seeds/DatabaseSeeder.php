@@ -13,6 +13,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         Model::unguard();
+            $this->call(AccountStatusTableSeeder::class);
             $this->call(CurrencyTableSeeder::class);
             $this->call(UserTableSeeder::class);
             $this->call(TransactionCodeTableSeeder::class);
@@ -20,7 +21,7 @@ class DatabaseSeeder extends Seeder
             $this->call(FITableSeeder::class);
             $this->call(AccountTypeTableSeeder::class);
             $this->call(BankAccountTableSeeder::class);
-            $this->call(TransactionLogTableSeeder::class);
+//            $this->call(TransactionLogTableSeeder::class);
             $this->call(OAuthClientTableSeeder::class);
         Model::reguard();
     }
