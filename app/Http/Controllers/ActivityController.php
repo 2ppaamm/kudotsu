@@ -70,7 +70,7 @@ class ActivityController extends Controller
 
 
         // authenticate Payee account
-        if ($request->amount_in_txn_currency > 0) {
+        if ($request->amount_in_txn_currency > 0 and (!$payer->id=$payee->id)) {
             // Check fraud
             $fraud = Queue::push($controller->checkFraud($payer));
             if ($this->checkPayeeAccount($payee->user)) {
@@ -93,7 +93,7 @@ class ActivityController extends Controller
             Queue::push($controller->store($message_code, $payer, $payee), '', 'activity_log');
         }
         else {
-            session()->flash('flash_message', 'Invalid Amount');
+            session()->flash('flash_message', 'Invalid Amount or trying to pay yourself');
             $message_code = 13;
         }
             return view('transaction.response');
@@ -200,30 +200,31 @@ class ActivityController extends Controller
                     {
                         if ($this->PaypalApproved()){
                             session()->flash('flash_message', 'Approved by Payment Gateway');
-                            return TRUE;
+                            return 0;
                         }
                         else {
                             session()->flash('flash_message', 'Unapproved by Payment Gateway, try another card');
+                            return 85;
                         }
                     }
                     else {
-                        session()->flash('flash_message', 'Enough Kudos balance');
-                        return TRUE;
+                        session()->flash('flash_message', 'Transaction approved using existing kudos.');
+                        return 0;
                     }
                 } else {
                     session()->flash('flash_message', 'Exceeded daily limit');
-                    return FALSE;
+                    return 51;
                 }
             } else {
                 session()->flash('flash_message', 'Exceeded transaction limit.');
-                return FALSE;
+                return 51;
             }
         }
         else {
             session()->flash('flash_message', 'Payer account not active');
         }
         session()->flash('flash_message', 'Payer account not approved - unknown error');
-        return FALSE;
+        return 14;
     }
 
     public function PaypalApproved()

@@ -19,21 +19,24 @@
 </ul>
 {!! Form::open(['action'=>'ActivityController@store','id'=>'payment','class'=>'form', 'method'=>'post']) !!}
     <div class="form-group">
-        {!! Form:: hidden('payer_id', '3',['required',
-        'class'=>'form-control']) !!}
+        {!! Form::label('Payer id') !!}
+        {!! Form:: text('payer_id', '3',['required',
+        'class'=>'form-control','placeholder'=>'1 - Pamela, 2 - Kent, 3, Kenneth']) !!}
         {!! Form:: hidden('txn_currencyid', '3',['required',
         'class'=>'form-control']) !!}
         {!! Form:: hidden('merchant_code', '1',['required',
         'class'=>'form-control']) !!}
         {!! Form:: hidden('grant_type', 'password',['required',
         'class'=>'form-control']) !!}
-        {!! Form:: hidden('payee_id', '3',['required',
-        'class'=>'form-control','placeholder'=>'client_id = 1']) !!}
-        {!! Form:: hidden('client_secret', 'kenthoie',['required',
-        'class'=>'form-control','placeholder'=>'client_secret = 123456', 'value'=>'123456']) !!}
+        {!! Form::label('Payee id') !!}
+        {!! Form:: text('payee_id', '3',['required',
+        'class'=>'form-control','placeholder'=>'1 - Pamela, 2 - Kenneth, 3, Kent']) !!}
+        {!! Form::label('Payee Client Secret') !!}
+        {!! Form:: text('client_secret', 'kenthoie',['required',
+        'class'=>'form-control','placeholder'=>'Pamela - 123456, Kent - kenthoie, Kenneth - kennethgoh', 'value'=>'123456']) !!}
         {!! Form::label('Username') !!}
         {!! Form:: text('username', 'pamelaliusm@gmail.com', [
-            'required', 'class' => 'form-control', 'placeholder' => 'pamelaliusm@gmail.com',
+            'required', 'class' => 'form-control', 'placeholder' => 'gmail account of payer',
             'value'=>'pamelaliusm@gmail.com'
         ]) !!}
     </div>
