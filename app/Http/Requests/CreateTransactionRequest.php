@@ -24,13 +24,13 @@ class CreateTransactionRequest extends Request
     public function rules()
     {
         return [
-            'user_id' => 'required',
-            'password' => 'required',
+            'payer_id' => 'required|exists:users,id',
+            'password' => 'required|integer',
             'amount_in_txn_currency' =>'required',
 //            'bank_account_id'=>'required',
-            'txn_currencyid' => 'required',
+            'txn_currencyid' => 'required|exists:currencies,id',
 //            'transaction_address' => 'required',
-//            'merchant_code' =>'required'
+            'payee_id' =>'required|exists:oauth_clients,id'
         ];
     }
 

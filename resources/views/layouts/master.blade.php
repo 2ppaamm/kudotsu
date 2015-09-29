@@ -11,6 +11,12 @@
 </head>
 <body ng-app>
     <div class="container">
+
+        @if (session('flash_message'))
+            <div class="alert alert-success">
+                {{ session('flash_message') }}
+            </div>
+        @endif
         <div class="col-md-9">
             @yield('contents')
         </div>

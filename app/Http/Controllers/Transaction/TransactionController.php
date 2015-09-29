@@ -15,6 +15,7 @@ use App\User;
 use App\Jobs\SendReminderEmail;
 use Illuminate\Support\Facades\Hash;
 use LucaDegasperi\OAuth2Server\Facades\Authorizer;
+use Mockery\CountValidator\Exception;
 use PayPal\Api\Payment;
 use Webpatser\Uuid\Uuid;
 
@@ -59,10 +60,9 @@ class TransactionController extends Controller
      * @param  Request $request
      * @return Response
      */
-    public function store(Payment $payment, $request)
+    public function store($message,$payer, $payee)
     {
-
-        return $payment;
+        //
     }
 
     /**
@@ -73,11 +73,18 @@ class TransactionController extends Controller
      */
     public function show($id)
     {
+        try {
+
         $transaction = Transaction_log::find($id);
         if (!$transaction) {
             return response()->json(['message' => 'This transaction does not exist', 'code' => 404], 404);
         }
         return response()->json(['data' => $transaction], 200);
+        }
+        catch (Exception $e)
+        {
+            return response()->json(['message' => 'Error in finding transaction', 'code' => 404], 404);
+        }
     }
 
     /**
@@ -114,4 +121,11 @@ class TransactionController extends Controller
         //
     }
 
+    public function checkFraud($payer){
+        // number of transactions
+        // kudos transacted vs available
+        // location (future)
+        session()->flash('flash_message', 'No fraud suspected.');
+        return FALSE;
+    }
 }

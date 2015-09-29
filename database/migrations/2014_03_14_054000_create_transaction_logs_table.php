@@ -14,10 +14,11 @@ class CreateTransactionLogsTable extends Migration
     {
         Schema::create('transaction_logs', function(Blueprint $table)
         {
+            $table->bigIncrements('id');
             $table->string('activity_log_id');
             $table->foreign('activity_log_id')->references('id')->on('activity_logs');
             $table->string('transaction_code');
-            $table->primary(['activity_log_id', 'transaction_code']);
+            $table->string('message_code');
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
             $table->integer('bank_account_id')->unsigned();

@@ -25,10 +25,13 @@ class UserTableSeeder extends Seeder
             'kudos_ledger_balance' => 400000,
             'kudos_onhold_amt' =>0,
             'kudos_available_balance' =>400000,
-            'last_update' => $faker->dateTime($max ='now'),
+            'kudos_used_today' => 400,
             'kudos_beginning_day_balance' => 500000,
             'number_of_txn_day' => 4,
-            'net_day_txn_kudos' => 100000
+            'net_day_txn_kudos' => 100000,
+            'account_currency_id' => 2,
+            'daily_limit_kudos' => 1000000000,
+            'transaction_limit_kudos' => 1000000
         ]);
         $user = User::create([
             'name' => 'kenthoie',
@@ -40,10 +43,13 @@ class UserTableSeeder extends Seeder
             'kudos_ledger_balance' => 800000,
             'kudos_onhold_amt' =>100000,
             'kudos_available_balance' =>700000,
-            'last_update' => $faker->dateTime($max ='now'),
+            'kudos_used_today' => 40000,
             'kudos_beginning_day_balance' => 10000000,
             'number_of_txn_day' => 3,
-            'net_day_txn_kudos' => 300000
+            'net_day_txn_kudos' => 300000,
+            'account_currency_id' => 3,
+            'daily_limit_kudos' => 1000000,
+            'transaction_limit_kudos' => 100000
         ]);
         $user = User::create([
             'name' => 'kennethgoh',
@@ -55,10 +61,13 @@ class UserTableSeeder extends Seeder
             'kudos_ledger_balance' => 4000000,
             'kudos_onhold_amt' =>0,
             'kudos_available_balance' =>4000000,
-            'last_update' => $faker->dateTime($max ='now'),
+            'kudos_used_today' => 40000,
             'kudos_beginning_day_balance' => 5000000,
             'number_of_txn_day' => 4,
-            'net_day_txn_kudos' => 1000000
+            'net_day_txn_kudos' => 1000000,
+            'account_currency_id' => 4,
+            'daily_limit_kudos' => 1000000,
+            'transaction_limit_kudos' => 1000
         ]);
 
         for ($i = 0; $i < 20; $i++)
@@ -73,11 +82,12 @@ class UserTableSeeder extends Seeder
                 'kudos_ledger_balance' => $faker->numberBetween(0,1000000),
                 'kudos_onhold_amt' =>$faker->numberBetween(0,100000),
                 'kudos_available_balance' => $faker->numberBetween(0,900000),
-                'last_update' => $faker->dateTime($max ='now'),
                 'kudos_beginning_day_balance' => $faker->numberBetween(0,1200000),
                 'number_of_txn_day' => $faker->numberBetween(1,10),
-                'net_day_txn_kudos' => $faker->numberBetween(0,1200000)
-
+                'net_day_txn_kudos' => $faker->numberBetween(0,1200000),
+                'account_currency_id' => 4,
+                'daily_limit_kudos' => 1000,
+                'transaction_limit_kudos' => 100
             ));
         }
    }

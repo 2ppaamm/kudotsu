@@ -7,12 +7,14 @@ use App\Http\Controllers\Transaction\TransactionController;
 use App\Transaction_log;
 use App\OAuth_clients;
 use App\User;
+use GuzzleHttp\Subscriber\Redirect;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Requests\CreateTransactionRequest;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Queue;
+use Illuminate\Support\Facades\Session;
 use Mockery\CountValidator\Exception;
 use PayPal\Api\Payment;
 use PayPal\Auth\OAuthTokenCredential;
@@ -51,45 +53,51 @@ class ActivityController extends Controller
      */
     public function store(CreateTransactionRequest $request, TransactionController $controller)
     {
-        // find payee and payer
-        $payer = User::with(['primary_account', 'account_status'])->first();    // get payer and primary a/c information
-        $payee = OAuth_clients::with('user')->with('user.account_status')
-            ->whereId($request->client_id)->first();
+        $message_code = 57;             // initialize with illegal transaction
+        // log activity
+        try {
+            $payer = User::findOrFail($request->payer_id)->with(['primary_account', 'account_status'])
+                ->first();  // get payer and primary a/c information
+            $payee = OAuth_clients::with('user')->with('user.account_status')
+                ->whereId($request->payee_id)->first();
+            session()->flash('flash_message', 'Found Payee/Payer');
+        } catch (Exception $e) {
+            session()->flash('flash_message', 'Cannot find payee/payer');
+            $message_code = 14;
+        }
 
-        // Log activity
-        Queue::push($this->logActivity($payer,$payee,$request->txn_currencyid,$request->amount_in_txn_currency),'','activity_log');
+        $activity_id = Queue::push($this->logActivity($payer, $payee, $request->txn_currencyid, $request->amount_in_txn_currency), '', 'activity_log');
 
-        // Authenticate payer with password
-        if (Hash::check($request->password, $payer->password))
-        {
-            // check payee account valid and payer account valid and funded
-            if ($this->checkPayeeAccount($payee->user) and $this->checkPayerAccount($payer, $request))
-            {
-                return 'Transaction of $'.$request->amount_in_txn_currency.' to '.
-                $payee->user->name.' is approved.';
+
+        // authenticate Payee account
+        if ($request->amount_in_txn_currency > 0) {
+            // Check fraud
+            $fraud = Queue::push($controller->checkFraud($payer));
+            if ($this->checkPayeeAccount($payee->user)) {
+
+                // authenticate and transact for payer
+                if (Hash::check($request->password, $payer->password)) {
+                    // check payee
+                    $message_code = $this->checkPayerAccount($payer, $request);
+                    if ($message_code = 0) {
+                        session()->flash('flash_message', 'Transaction approved');
+                    }
+                } else {
+                    session()->flash('flash_message', 'Payer Kudotsu account/PIN wrong.');
+                    $message_code = 28;
+                }
+            } else {
+                session()->flash('flash_message', 'Payee Kudotsu account not approved');
+                $message_code = 20;
             }
-            else
-            {
-                return "Transaction is rejected";
-            }// Queue up checking payer, payee and paypal
+            Queue::push($controller->store($message_code, $payer, $payee), '', 'activity_log');
         }
-        else
-        {
-            return response()->json(['message' => 'Wrong User or PIN', 'ISO8583 code' => 55], 404);
+        else {
+            session()->flash('flash_message', 'Invalid Amount');
+            $message_code = 13;
         }
-
-        if ($request->amount_in_txn_currency > $payer->primary_account->transaction_limit)
-        {
-            //  create token and one-time PIN
-            //  serve a view with access_token and OTP for verification
-            //  new view to be served by transaction log
-        }
-
-//        return Authorizer::issueAccessToken()['access_token'];
-        Queue::push($controller->store($payment, $request),'', 'transaction_log');
-        return 'Your request to debit $'.$request->amount_in_txn_currency.' is being processed';
+            return view('transaction.response');
     }
-
     /**
      * Display the specified resource.
      *
@@ -138,61 +146,95 @@ class ActivityController extends Controller
     public function logActivity(User $payer, $payee, $txn_currency_id, $amount_in_txn_currency)
     {
         try {
-            $noOfKudos = Currency::findOrFail($txn_currency_id)->Kudos_exchange * $amount_in_txn_currency;
-            $activity_id = (string)Uuid::generate(4);
             $activity = Activity_log::create([
-                'id' => $activity_id,
+                'id' => (string)Uuid::generate(4),
                 'payer_id' => $payer->id,
                 'payee_id' => $payee->user->id,
                 'txn_currencyid' => 2,
                 'amount_in_txn_currency' => $amount_in_txn_currency,
-                'number_of_kudos' => $noOfKudos
+                'number_of_kudos' => Currency::findOrFail($txn_currency_id)->Kudos_exchange * $amount_in_txn_currency
             ]);
-            Cache::add($activity_id, $activity, 15);
-            return TRUE;
+            session()->flash('flash_message', 'Activity logged');
+            return $activity->id;
         }
         catch (Exception $e)
         {
-            return response()->json(['message' => 'Error Logging', 'code' => 500], 500);
+            session()->flash('flash_message', 'Error in activity logging');
+            return FALSE;
         }
     }
 
     public function checkPayeeAccount(User $payee)
     {
         // check validity of user account
-        if ($payee->account_status->status ='active')
+        if (!$payee->account_status->status ='active')
         {
-            return TRUE;
+            session()->flash('flash_message', 'Payee account not active', 'ISO8583 code 76');
+            return FALSE;
         }
-        else
-        {
-            return response()->json(['message' => 'Account not active', 'ISO8583 code' => 76], 500);
-//            return FALSE;
-        }
+        else return TRUE;
     }
 
-    public function checkPayerAccount($payer, $request, TransactionController $controller)
+    public function checkPayerAccount($payer, $request)
     {
-        // check validity of account
+        // check validity of payer account
+        // check transaction log for the day
         // check sufficient kudos
         // debit from paypal if required
         // send notification to payer and payee
-        // check validity of user account
 
-        if ($payer->account_status->status ='active')
-        {
+        if ($payer->account_status->status ='active') {
+            // Calculate number of kudos
             $noOfKudos = Currency::findOrFail($request->txn_currencyid)->Kudos_exchange * $request->amount_in_txn_currency;
 
-            if ($payer->kudos_available_balance < $noOfKudos)
-            {
-                // not enough kudos, need to go and get more
-                $apiContext = new ApiContext(new OAuthTokenCredential(
-                    'AUUtaT83w_ErtfGTsoCHdjgKK8tnI_WH2mFLwnD1nJ_ZyfuQ-EBbCFF-mLBtsK1yWyCMJzaSWLcVlgMP',
-                    'ENvu8lo-d2QUxLsgUNp2VKxwEI2YvtivnAURwvEOO6ZpRTac65pABzkxH0N8JNbW6drCZSgN9qPbS-vZ'
-                ));
+            // Check transaction_limit
+            if ($payer->transaction_limit_kudos >= $noOfKudos) {
+                session()->flash('flash_message', 'Within transaction limit.');
 
-                $payment = new Payment(
-                    '{
+                // Check daily_limit
+                if ($payer->kudos_used_today + $noOfKudos <= $payer->daily_limit_kudos) {
+                    session()->flash('flash_message', 'Within daily limit');
+
+                    // Check if need to go to payment gateway
+                    if ($payer->kudos_available_balance < $noOfKudos)
+                    {
+                        if ($this->PaypalApproved()){
+                            session()->flash('flash_message', 'Approved by Payment Gateway');
+                            return TRUE;
+                        }
+                        else {
+                            session()->flash('flash_message', 'Unapproved by Payment Gateway, try another card');
+                        }
+                    }
+                    else {
+                        session()->flash('flash_message', 'Enough Kudos balance');
+                        return TRUE;
+                    }
+                } else {
+                    session()->flash('flash_message', 'Exceeded daily limit');
+                    return FALSE;
+                }
+            } else {
+                session()->flash('flash_message', 'Exceeded transaction limit.');
+                return FALSE;
+            }
+        }
+        else {
+            session()->flash('flash_message', 'Payer account not active');
+        }
+        session()->flash('flash_message', 'Payer account not approved - unknown error');
+        return FALSE;
+    }
+
+    public function PaypalApproved()
+    {
+        $apiContext = new ApiContext(new OAuthTokenCredential(
+            'AUUtaT83w_ErtfGTsoCHdjgKK8tnI_WH2mFLwnD1nJ_ZyfuQ-EBbCFF-mLBtsK1yWyCMJzaSWLcVlgMP',
+            'ENvu8lo-d2QUxLsgUNp2VKxwEI2YvtivnAURwvEOO6ZpRTac65pABzkxH0N8JNbW6drCZSgN9qPbS-vZ'
+        ));
+
+        $payment = new Payment(
+            '{
                         "intent": "sale",
                         "payer": {
                         "payment_method": "credit_card",
@@ -223,27 +265,9 @@ class ActivityController extends Controller
                             }
                         ]
                     }'
-                );
-                $payment->create($apiContext);
-                if ($payment->state='approved') return TRUE;
-                else return FALSE;
-            }
-            else
-            {
-                // enough kudos from account - no need to go to payment gateway
-                return TRUE;
-            }
-        }
-        else
-        {
-            return response()->json(['message' => 'Account not active', 'ISO8583 code' => 76], 500);
-//            return FALSE;
-        }
-    }
-
-    public function logTransaction($activity_id)
-    {
-        // call TransactionController to log transaction
-        return True;
+        );
+        $payment->create($apiContext);
+        if ($payment->state='approved') return TRUE;
+        else return FALSE;
     }
 }
