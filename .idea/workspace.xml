@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1e4af7c0-ca15-4101-82f7-cb1f9a5e249d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/seeds/AccountStatusTableSeeder.php" afterPath="$PROJECT_DIR$/database/seeds/AccountStatusTableSeeder.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/seeds/UserTableSeeder.php" afterPath="$PROJECT_DIR$/database/seeds/UserTableSeeder.php" />
     </list>
     <ignored path="nfc.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -30,14 +30,12 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="AccountStatusTableSeeder.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/database/seeds/AccountStatusTableSeeder.php">
+      <file leaf-file-name="UserTableSeeder.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/database/seeds/UserTableSeeder.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8945687">
-              <caret line="39" column="5" selection-start-line="39" selection-start-column="5" selection-end-line="39" selection-end-column="5" />
-              <folding>
-                <element signature="e#7#38#0#PHP" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="0.78913736">
+              <caret line="38" column="44" selection-start-line="38" selection-start-column="44" selection-end-line="38" selection-end-column="44" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -100,12 +98,12 @@
         <option value="$PROJECT_DIR$/database/migrations/2014_03_13_105653_create_activity_table.php" />
         <option value="$PROJECT_DIR$/database/migrations/2014_03_14_053909_create_bank_accounts_table.php" />
         <option value="$PROJECT_DIR$/database/migrations/2014_03_12_000000_create_users_table.php" />
-        <option value="$PROJECT_DIR$/database/seeds/UserTableSeeder.php" />
         <option value="$PROJECT_DIR$/database/migrations/2014_03_14_054000_create_transaction_logs_table.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Transaction/TransactionController.php" />
         <option value="$PROJECT_DIR$/resources/views/transaction/token.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/ActivityController.php" />
         <option value="$PROJECT_DIR$/database/seeds/AccountStatusTableSeeder.php" />
+        <option value="$PROJECT_DIR$/database/seeds/UserTableSeeder.php" />
       </list>
     </option>
   </component>
@@ -1163,28 +1161,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/seeds/UserTableSeeder.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8945687">
-          <caret line="55" column="42" selection-start-line="55" selection-start-column="42" selection-end-line="55" selection-end-column="42" />
-          <folding>
-            <marker date="1443562957425" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1443562957425" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1443562957425" expanded="true" signature="-1:-1" placeholder=" Run the database seeds. ..." />
-            <marker date="1443562957425" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1443562957425" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1443562957425" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1443562957425" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1443562957425" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1443562957425" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1443562957425" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1443562957425" expanded="true" signature="-1:-1" placeholder="{...}" />
-            <marker date="1443562957425" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1443562957425" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/transaction/token.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.7907348">
@@ -1284,8 +1260,29 @@
         <state vertical-scroll-proportion="0.8945687">
           <caret line="39" column="5" selection-start-line="39" selection-start-column="5" selection-end-line="39" selection-end-column="5" />
           <folding>
-            <element signature="e#7#38#0#PHP" expanded="true" />
+            <marker date="1443571345891" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1443571345891" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1443571345891" expanded="true" signature="-1:-1" placeholder=" Run the database seeds. ..." />
+            <marker date="1443571345891" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1443571345891" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1443571345891" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1443571345891" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1443571345891" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1443571345891" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1443571345891" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1443571345891" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1443571345891" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1443571345891" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1443571345891" expanded="true" signature="-1:-1" placeholder="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/seeds/UserTableSeeder.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.78913736">
+          <caret line="38" column="44" selection-start-line="38" selection-start-column="44" selection-end-line="38" selection-end-column="44" />
+          <folding />
         </state>
       </provider>
     </entry>

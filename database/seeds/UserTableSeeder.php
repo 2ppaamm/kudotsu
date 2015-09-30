@@ -36,7 +36,7 @@ class UserTableSeeder extends Seeder
         $user = User::create([
             'name' => 'kenthoie',
             'email' => 'yinkuan.2006@gmail.com',
-            'password' => Hash::make('kenthoie'),
+            'password' => Hash::make('123456'),
             'is_admin' => TRUE,
             'account_status_id' => 1,
             'address' =>'98 Some street, Someplace, Singapore 348790',
@@ -54,7 +54,7 @@ class UserTableSeeder extends Seeder
         $user = User::create([
             'name' => 'kennethgoh',
             'email' => 'jazken@gmail.com',
-            'password' => Hash::make('kennethgoh'),
+            'password' => Hash::make('123456'),
             'is_admin' => TRUE,
             'account_status_id' => 1,
             'address' =>'78 Some Cushy Island, The place to be at, USA 38792-098',
@@ -75,7 +75,7 @@ class UserTableSeeder extends Seeder
             $user = User::create(array(
                 'name' => $faker->userName,
                 'email' => $faker->email,
-                'password' => Hash::make('password'),
+                'password' => Hash::make('123456'),
                 'account_status_id' => 1,
                 'is_admin'=>False,
                 'address' => $faker->address,
