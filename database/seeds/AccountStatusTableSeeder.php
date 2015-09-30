@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
-use App\Account_Status;
+use App\Account_status;
 
 class AccountStatusTableSeeder extends Seeder
 {
@@ -13,27 +13,27 @@ class AccountStatusTableSeeder extends Seeder
      */
     public function run()
     {
-        $account_status = Account_Status::create([
+        $account_status = Account_status::create([
             'status' => 'active',
             'description' => 'active account'
         ]);
 
-        $account_status = Account_Status::create([
+        $account_status = Account_status::create([
             'status' => 'onhold',
             'description' => 'onhold account'
         ]);
 
-        $account_status = Account_Status::create([
+        $account_status = Account_status::create([
             'status' => 'closed',
             'description' => 'closed account'
         ]);
 
-        $account_status = Account_Status::create([
+        $account_status = Account_status::create([
             'status' => 'inactive',
             'description' => 'inactive account'
         ]);
 
-        $account_status = Account_Status::create([
+        $account_status = Account_status::create([
             'status' => 'compromised',
             'description' => 'compromised account'
         ]);
