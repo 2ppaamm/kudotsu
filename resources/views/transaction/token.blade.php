@@ -20,7 +20,7 @@
 {!! Form::open(['action'=>'ActivityController@store','id'=>'payment','class'=>'form', 'method'=>'post']) !!}
     <div class="form-group">
         {!! Form::label('Payer id') !!}
-        {!! Form:: text('payer_id', '3',['required',
+        {!! Form:: text('payer_id', '1',['required',
         'class'=>'form-control','placeholder'=>'1 - Pamela, 2 - Kent, 3, Kenneth']) !!}
         {!! Form:: hidden('txn_currencyid', '3',['required',
         'class'=>'form-control']) !!}

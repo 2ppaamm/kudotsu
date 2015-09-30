@@ -70,7 +70,7 @@ class ActivityController extends Controller
 
 
         // authenticate Payee account
-        if ($request->amount_in_txn_currency > 0 and (!$payer->id=$payee->id)) {
+        if ($request->amount_in_txn_currency > 0) {
             // Check fraud
             $fraud = Queue::push($controller->checkFraud($payer));
             if ($this->checkPayeeAccount($payee->user)) {
@@ -93,7 +93,7 @@ class ActivityController extends Controller
             Queue::push($controller->store($message_code, $payer, $payee), '', 'activity_log');
         }
         else {
-            session()->flash('flash_message', 'Invalid Amount or trying to pay yourself');
+            session()->flash('flash_message', $payee.$request->payer_id.$payer);//'Invalid Amount or trying to pay yourself');
             $message_code = 13;
         }
             return view('transaction.response');
